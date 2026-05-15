@@ -1,0 +1,98 @@
+\chapter{Desarrollo Teórico}
+
+\section{Índice Horario}
+
+El índice horario es una convención utilizada para indicar el 
+desfase existente entre la fuerza electromotriz (FEM) primaria y la secundaria 
+de un transformador trifásico. Este desfase depende del sentido de arrollamiento 
+de las bobinas y de la forma en que estas se conectan entre sí.
+
+La nomenclatura se compone de:
+\begin{itemize}
+    \item Una letra mayúscula que indica la conexión del primario ($Y$: estrella, 
+    $D$: triángulo, $Z$: zigzag).
+    \item Una letra minúscula que indica la conexión del secundario ($y$: estrella, 
+    $d$: triángulo, $z$: zigzag).
+    \item Un número (0 al 11) que multiplicado por $30^\circ$ nos da el ángulo de 
+    retraso del vector de baja tensión respecto al de alta tensión.
+\end{itemize}
+
+\section{Representación del Reloj}
+
+Se utiliza la analogía de las agujas de un reloj para visualizar el desfase. El 
+vector de tensión del bobinado de alta tensión se sitúa siempre a las 12 (posición 
+cero). El vector de tensión del bobinado de baja tensión se sitúa en la hora que 
+indica el índice.
+
+Cada hora representa un desfase de $30^\circ$ en sentido horario (retraso).
+
+\begin{figure}[!ht]
+    \centering
+    \input{figures/clock_notation.tex}
+    \caption{Representación del índice horario mediante el reloj.}
+    \label{fig:clock}
+\end{figure}
+
+\section{Conexiones Comunes}
+
+Las combinaciones de conexiones permiten obtener diferentes índices horarios. 
+Los más utilizados en la industria son:
+
+\begin{itemize}
+    \item \textbf{Yy0:} Ambas conexiones en estrella. No hay desfase. Se utiliza en 
+    redes de transporte pero presenta problemas con la tercera armónica si no 
+    tiene devanado de compensación.
+    \item \textbf{Dy11:} Primario en triángulo, secundario en estrella. El 
+    secundario adelanta $30^\circ$ al primario (o retrasa $330^\circ$). Es el más 
+    común en distribución, permitiendo neutro accesible y equilibrando cargas.
+    \item \textbf{Yz5:} Primario en estrella, secundario en zigzag. Permite 
+    un fuerte desequilibrio de cargas en el secundario.
+\end{itemize}
+
+\section{Resumen de Grupos y Aplicaciones}
+
+A continuación se presenta una tabla resumen con los grupos de conexión más 
+frecuentes y sus aplicaciones principales:
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|p{6cm}|}
+        \hline
+        \textbf{Grupo} & \textbf{Desfase} & \textbf{Conexión} & \textbf{Aplicación Típica} \\ \hline
+        Yy0 & $0^\circ$ & Estrella-Estrella & Grandes sistemas de transmisión, requiere devanado terciario para armónicos. \\ \hline
+        Dd0 & $0^\circ$ & Triángulo-Triángulo & Transformadores de gran corriente y baja tensión. \\ \hline
+        Dy11 & $330^\circ$ & Triángulo-Estrella & Distribución urbana e industrial (el más común). Permite neutro. \\ \hline
+        Yz5 & $150^\circ$ & Estrella-Zigzag & Distribución con cargas muy desequilibradas. \\ \hline
+        Dz0 & $0^\circ$ & Triángulo-Zigzag & Aplicaciones especiales donde se requiere mitigar armónicos y desequilibrios. \\ \hline
+    \end{tabular}
+    \caption{Grupos de conexión y aplicaciones.}
+    \label{tab:indices}
+\end{table}
+
+\section{Ventajas y Aplicaciones}
+
+La elección del índice horario es determinante para diversas aplicaciones:
+
+\begin{enumerate}
+    \item \textbf{Puesta en paralelo:} Para conectar dos transformadores en 
+    paralelo, es condición necesaria que ambos pertenezcan al mismo grupo de 
+    índice horario (o grupos compatibles mediante cambio de bornes). De lo 
+    contrario, circularían corrientes de cortocircuito inadmisibles.
+    \item \textbf{Tratamiento de Armónicos:} Conexiones en triángulo ($D$) 
+    permiten la circulación de la tercera armónica dentro de la malla, evitando 
+    su propagación a la red.
+    \item \textbf{Acceso al Neutro:} La conexión en estrella ($y$) permite 
+    conectar el neutro a tierra, facilitando la protección y el suministro a 
+    cargas monofásicas.
+\end{enumerate}
+
+\section{Puesta en Paralelo}
+
+Para que dos transformadores trifásicos puedan trabajar en paralelo, deben 
+cumplir:
+\begin{itemize}
+    \item Igual relación de transformación (tensiones iguales).
+    \item Igual tensión de cortocircuito (para un reparto equitativo de carga).
+    \item \textbf{Igual índice horario} (o desfase nulo entre secundarios).
+    \item Misma secuencia de fases.
+\end{itemize}

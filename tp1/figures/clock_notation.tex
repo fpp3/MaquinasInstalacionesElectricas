@@ -1,0 +1,22 @@
+\begin{tikzpicture}[line cap=rect, line join=round, >=Stealth]
+    % Clock face
+    \draw[thick] (0,0) circle (2cm);
+    \foreach \x in {1,2,...,12} {
+        \draw ({90-\x*30}:1.85cm) -- ({90-\x*30}:2cm);
+        \node at ({90-\x*30}:1.6cm) {\footnotesize \x};
+    }
+    
+    % AT Phasor (fixed at 12) - Longer to stand out
+    \draw[->, ultra thick, blue] (0,0) -- (0,2.6) node[above, font=\small\bfseries] {AT ($U_A$)};
+    
+    % BT Phasor (at 11)
+    \draw[->, ultra thick, red] (0,0) -- (120:2.3) node[above, font=\small\bfseries] {BT ($u_a$)};
+    
+    % Angle arc (from 12 o'clock clockwise to 11 o'clock)
+    \draw[->, thick] (0,0.8) arc (90:-240:0.8);
+    
+    % Angle label - Positioned in a clear area (around 5 o'clock)
+    \node[draw=black!20, fill=white, rounded corners=2pt, font=\footnotesize, inner sep=2pt] 
+        at (315:1.2) {$330^\circ = 11 \times 30^\circ$};
+    
+\end{tikzpicture}
