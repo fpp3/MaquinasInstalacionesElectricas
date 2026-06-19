@@ -1,0 +1,36 @@
+\chapter{Conclusiones}
+
+El desarrollo de este trabajo práctico permitió profundizar en el comportamiento y la representación vectorial de las
+diferentes conexiones de transformadores trifásicos. A través del simulador interactivo de Aula Moisan y del material
+bibliográfico del libro Máquinas Eléctricas de Fraile Mora, se logró comprender cómo las variaciones constructivas y
+de conexión eléctrica repercuten directamente en el desfasaje angular de las tensiones secundarias respecto a las primarias.
+
+\section{Análisis de Resultados}
+Los resultados obtenidos demuestran que el índice horario no depende únicamente del tipo básico de conexión de los devanados
+(estrella, triángulo o zigzag), sino de la polaridad de las conexiones y el conexionado de los terminales homólogos. Se
+pueden extraer las siguientes observaciones clave:
+\begin{itemize}
+    \item La inversión del neutro en una conexión estrella (pasar de Estrella 1 a Estrella 2) o la polaridad del triángulo
+    (pasar de Triángulo 1 a Triángulo 2) equivale a un desfase eléctrico de $180^\circ$. Esto se evidenció claramente
+    al comparar la conexión Yy0 con la Yy6, o bien al analizar cómo Dy5 difiere de otras conexiones tipo Dy.
+    \item La conexión zigzag resulta ser una de las más interesantes desde el punto de vista vectorial, ya que cada fase
+    secundaria se compone de la suma vectorial de dos semidevanados bobinados en columnas distintas del núcleo. Las
+    configuraciones Zigzag 1 y Zigzag 3 demostraron cómo variando el conexionado interno se pueden obtener desfases
+    nulos (Dz0), de $180^\circ$ (Dz6) o bien combinados con la estrella del primario para lograr desfasajes específicos
+    como en Yz5 e Yz11.
+    \item La utilización del simulador web facilitó la visualización en tiempo real de los triángulos de tensión y de la
+    esfera del reloj, validando de manera experimental la teoría analítica descrita en la bibliografía.
+\end{itemize}
+
+\section{Cumplimiento de Objetivos}
+Todos los objetivos planteados en la introducción del informe fueron plenamente alcanzados:
+\begin{itemize}
+    \item Se determinó y justificó analíticamente el índice horario para cada una de las nueve configuraciones bajo ensayo.
+    \item Se analizó detalladamente la correspondencia entre los esquemas de conexión física de las borneras y sus diagramas
+    vectoriales de tensiones.
+    \item Se comprendió la relevancia del índice horario en la ingeniería eléctrica práctica. En particular, se reafirmó
+    que para posibilitar el acoplamiento en paralelo de dos o más transformadores trifásicos, la igualdad de su índice
+    horario es una condición obligatoria y crítica. De no cumplirse esta condición, surgirían diferencias de tensión
+    compuesta entre terminales homólogos secundarios que provocarían corrientes de cortocircuito extremadamente elevadas,
+    capaces de dañar de forma severa y permanente las máquinas e instalaciones.
+\end{itemize}
