@@ -1,0 +1,100 @@
+\chapter{Análisis y Conclusiones}
+
+El análisis de los resultados simulados y teóricos permite responder de manera detallada a las consignas planteadas
+en la guía de laboratorio, profundizando en el comportamiento físico de la máquina.
+
+\section{Respuestas al Cuestionario de Análisis}
+
+\begin{enumerate}
+    \item \textbf{Comportamiento en vacío:}
+    En la condición de vacío (circuito secundario abierto, $Z'_c = 1\text{E+}99$), circula por el primario la corriente
+    de vacío $I_0 = \SI{0,640}{\ampere}$, que corresponde al $\SI{1,92}{\percent}$ de la corriente nominal ($I_{1N} = \SI{33,33}{\ampere}$).
+    La única pérdida significativa en esta condición son las pérdidas en el núcleo magnético o pérdidas en el hierro ($P_{Fe}$),
+    originadas por histéresis y corrientes de Foucault. La pérdida en el cobre en el devanado primario es insignificante
+    ($I_0^2 \cdot R_p = (\SI{0,64}{\ampere})^2 \cdot \SI{0,2925}{\ohm} = \SI{0,12}{\watt}$).
+    Al comparar la pérdida en el hierro medida por el simulador ($P_{Fe} = \SI{829,63}{\watt}$) con la potencia de vacío del
+    ensayo original ($P_0 = \SI{830}{\watt}$), se observa un acuerdo casi exacto (diferencia de apenas $\SI{0,04}{\percent}$),
+    lo que valida la parametrización de la rama en paralelo.
+
+    \item \textbf{Ensayo de cortocircuito controlado vs. cortocircuito franco:}
+    En el ensayo de cortocircuito controlado (Paso 3, $V_p = \SI{77}{\volt}$), la corriente primaria obtenida es
+    $I_p = \SI{33,40}{\ampere}$ (cercana a la nominal $I_{1N}$). En el cortocircuito franco (Paso 4, $V_p = \SI{3000}{\volt}$),
+    la corriente primaria se eleva hasta $I_p = \SI{1301,42}{\ampere}$.
+    La corriente en el cortocircuito franco es $\frac{\SI{1301,42}{\ampere}}{\SI{33,40}{\ampere}} = 38,96$ veces mayor que en
+    el ensayo controlado.
+    Esto justifica por qué el ensayo de laboratorio se realiza bajo tensión reducida ($V_{cc}$): permite circular la
+    corriente nominal sin dañar mecánicamente ni térmicamente la máquina. En un transformador real, un cortocircuito franco a
+    tensión nominal generaría un calentamiento por efecto Joule $1518$ veces superior al nominal ($39^2$) y fuerzas
+    electrodinámicas proporcionales al cuadrado de la corriente que destruirían mecánicamente los arrollamientos en pocos
+    segundos si no actúan los sistemas de protección.
+
+    \item \textbf{Regulación de tensión:}
+    La regulación de tensión porcentual ($\epsilon [\%]$) se calcula como:
+    \begin{equation}
+        \epsilon [\%] = \frac{V_{20} - V_{2N}}{V_{2N}} \times 100
+    \end{equation}
+    A partir de los resultados simulados de la Tabla~\ref{tab.ej1:resultados_simulador_carga} ($V_{20} = \SI{220,05}{\volt}$):
+    \begin{itemize}
+        \item Carga resistiva ($f_p = 1, V_s = \SI{218,56}{\volt}$): $\epsilon = \SI{0,68}{\percent}$.
+        \item Carga inductiva ($f_p = 0,8\text{ ind}, V_s = \SI{215,70}{\volt}$): $\epsilon = \SI{2,02}{\percent}$.
+        \item Carga capacitiva ($f_p = 0,8\text{ cap}, V_s = \SI{222,13}{\volt}$): $\epsilon = \SI{-0,94}{\percent}$ (sobrelevación).
+    \end{itemize}
+    
+    A modo comparativo, el cálculo teórico empleando los parámetros reales ($m = 13,636$ y $Z'_c = \SI{90}{\ohm}$) arroja:
+    \begin{itemize}
+        \item Carga resistiva ($f_p = 1, V_s = \SI{218,57}{\volt}$): $\epsilon = \SI{0,65}{\percent}$.
+        \item Carga inductiva ($f_p = 0,8\text{ ind}, V_s = \SI{215,59}{\volt}$): $\epsilon = \SI{2,05}{\percent}$.
+        \item Carga capacitiva ($f_p = 0,8\text{ cap}, V_s = \SI{222,13}{\volt}$): $\epsilon = \SI{-0,96}{\percent}$ (sobrelevación).
+    \end{itemize}
+
+    Se observa un acuerdo excelente entre los valores simulados y los cálculos teóricos (las diferencias son menores al
+    $\SI{0,05}{\percent}$ en regulación), lo que confirma la precisión del modelo cargado en el simulador.
+    Las curvas de regulación correspondientes se ilustran en la Figura~\ref{fig.ej1:plot_regulacion}. Las diferencias de comportamiento para cada factor de potencia se deben al desfase de la corriente respecto de la tensión. En una
+    carga inductiva, la reactancia interna de dispersión ($X_{cc}$) intensifica la caída de tensión. En una carga capacitiva,
+    la corriente en adelanto genera un efecto de magnetización adicional que compensa la caída inductiva e induce una
+    sobrelevación de la tensión secundaria respecto al valor de vacío (regulación negativa, o efecto Ferranti).
+
+    \item \textbf{Pérdidas en el hierro con la carga:}
+    Al observar la potencia de pérdidas en el hierro ($P_{Fe}$) para la carga resistiva en los ensayos 1 a 5, se detecta que
+    se mantiene prácticamente constante: varía desde $\SI{829,63}{\watt}$ en vacío hasta $\SI{823,91}{\watt}$ a plena carga
+    (una reducción de apenas el $\SI{0,69}{\percent}$).
+    Esto es plenamente consistente con el comportamiento de un transformador real, donde el flujo magnético principal en
+    el núcleo es casi constante bajo alimentación a tensión nominal. Debido a que la corriente nominal primaria es moderada
+    ($I_{1N} = \SI{33,33}{\ampere}$), la caída de tensión en el devanado primario es mínima, por lo que la fuerza electromotriz
+    inducida ($E$) y las pérdidas de hierro asociadas apenas sufren alteración.
+
+    \item \textbf{Rendimiento máximo:}
+    El rendimiento máximo registrado en las simulaciones se sitúa en la condición de carga al $\SI{100}{\percent}$ ($C = 1,00$),
+    alcanzando un valor de $\eta = \SI{98,53}{\percent}$ (ver curva en la Figura~\ref{fig.ej1:plot_rendimiento}). La eficiencia aumenta de manera progresiva con la carga:
+    $\SI{96,62}{\percent}$ para $C=0,25$, $\SI{98,04}{\percent}$ para $C=0,50$, $\SI{98,42}{\percent}$ para $C=0,75$ y
+    $\SI{98,53}{\percent}$ para $C=1,00$.
+    El rendimiento máximo teórico se produce cuando las pérdidas fijas se igualan a las pérdidas variables en el cobre
+    ($P_{Fe} = P_{Cu}$). A plena carga, las pérdidas en el cobre calculadas del simulador son
+    $P_{Cu} \approx P_{abs} - P_{Fe} - P_{out} = 100076 - 823,91 - 98605 = \SI{647,09}{\watt}$. Dado que las pérdidas en el
+    cobre son aún ligeramente inferiores a las del hierro ($\SI{647}{\watt} < \SI{824}{\watt}$), el punto de rendimiento
+    máximo absoluto se alcanzará para una carga levemente superior a la nominal (específicamente a una fracción de carga
+    $C = \sqrt{824/647} \approx 1,13$, es decir, al $\SI{113}{\percent}$ de carga). Esta característica de diseño es habitual
+    en transformadores de gran potencia, buscando maximizar el rendimiento promedio anual de la máquina.
+
+    \item \textbf{Conclusión general:}
+    Los resultados del simulador corroboran plenamente la validez física del modelo del circuito equivalente del
+    transformador monofásico, demostrando un comportamiento de alta eficiencia ($\approx \SI{98,5}{\percent}$ a carga nominal)
+    y una excelente regulación de tensión secundaria (caída menor al $\SI{2,5}{\percent}$ en el peor caso). Desde un punto de
+    vista energético, la máquina presenta un comportamiento óptimo operando entre el $\SI{70}{\percent}$ y el $\SI{100}{\percent}$
+    de su capacidad de placa, donde las pérdidas magnéticas de núcleo y las eléctricas por efecto Joule se encuentran
+    balanceadas.
+\end{enumerate}
+
+\section{Pregunta Conceptual: Análisis de Discrepancias}
+
+En las simulaciones definitivas, al haberse configurado en el simulador la relación de transformación real de placa
+($rt = 13,636$) y habiéndose cargado las impedancias de carga correctas referidas al primario ($Z'_c = Z_c \cdot m^2$),
+se han eliminado todas las discrepancias y errores de escala.
+
+Las corrientes y potencias primarias obtenidas se corresponden de manera exacta con el comportamiento teórico esperado
+de placa, y la tensión secundaria indicada directamente en la interfaz del simulador ($Vs$) coincide con la tensión real
+secundaria ($V_2$) del transformador. Las mínimas diferencias observadas (de pocas centésimas de voltio, como por ejemplo
+$Vs = \SI{220,05}{\volt}$ en vacío frente a los $\SI{220}{\volt}$ teóricos) son insignificantes y se explican únicamente
+por la precisión numérica y las discretizaciones de redondeo internas del simulador o los decimales de la constante $rt$.
+
+

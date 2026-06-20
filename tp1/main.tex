@@ -1,0 +1,41 @@
+\documentclass[]{informeutn}
+
+\usepackage[backend=bibtex, style=alphabetic, sorting=ynt]{biblatex}
+\addbibresource{fuentes.bib}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{icomma}
+
+% Configuración de siunitx para español
+\sisetup{
+  output-decimal-marker = {,},
+  per-mode = symbol,
+  range-phrase = { a },
+  range-units = single
+}
+
+% Datos del informe
+\materia{Máquinas e Instalaciones Eléctricas}
+\titulo{Transformador Monofásico - Simulador Aula Moisan}
+\subtitulo{Trabajo Práctico de Laboratorio N° 1}
+\comision{4R2}
+\autores{Franco Palombo - 401910}
+\fecha{\today}
+
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \newpage
+  \setcounter{page}{1}
+  \thispagestyle{plain}
+  
+  \input{chapters/1-introduccion.tex}
+  \input{chapters/2-desarrollo.tex}
+  \input{chapters/3-conclusiones.tex}
+  
+  \nocite{*}
+  \printbibliography[heading=bibnumbered, title={Fuentes}]
+  
+  \input{chapters/4-anexos.tex}
+  
+\end{document}
